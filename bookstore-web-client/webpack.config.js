@@ -3,7 +3,7 @@ module.exports = env => {
 
     return {
         // 1
-        entry: './src/index.js',
+        entry: './src/index.tsx',
         // 4
         module: {
             rules: [
@@ -11,6 +11,11 @@ module.exports = env => {
                     test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
                     use: ['babel-loader']
+                },
+                {
+                    test: /\.(ts|tsx)$/,
+                    exclude: /node_modules/,
+                    use: ['babel-loader', 'ts-loader']
                 }
             ]
         },
