@@ -1,0 +1,20 @@
+{
+  "description": "ESLint configuration used for JavaScript projects",
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.16.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@ateam/eslint-config-base",
+  "peerDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.16.0"
+  },
+  "version": "1.0.0"
+}

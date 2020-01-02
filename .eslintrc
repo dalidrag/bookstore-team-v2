@@ -1,0 +1,7 @@
+{
+  "extends": ["@ateam/eslint-config-react-app", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"]
+  }
+}

@@ -1,13 +1,31 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
+class Index extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-const title: string = 'React with Webpack, Babel and TypeScript.';
+  title: string = "Linted TypeScript for React";
 
-ReactDOM.render(
-<div>{title}</div>,
-document.getElementById('app')
-);
+  componentWillMount() {}
+
+  componentDidMount() {}
+
+  componentWillReceiveProps(nextProps) {}
+
+  componentWillUpdate(nextProps, nextState) {}
+
+  componentDidUpdate(prevProps, prevState) {}
+
+  componentWillUnmount() {}
+
+  render() {
+    return <div>{this.title}</div>;
+  }
+}
+
+ReactDOM.render(<Index />, document.getElementById("app"));

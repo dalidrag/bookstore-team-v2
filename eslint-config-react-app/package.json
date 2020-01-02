@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@ateam/eslint-config-base": "^1.0.0"
+  },
+  "description": "ESLint configuration used for React projects",
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@ateam/eslint-config-react-app",
+  "peerDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0"
+  },
+  "version": "1.0.0"
+}
