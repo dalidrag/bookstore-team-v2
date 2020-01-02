@@ -1,9 +1,11 @@
 const eslintFormatter = require("@ateam/react-dev-utils/eslintFormatter");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   // 1
   entry: "./src/index.tsx",
   mode: "development",
+  devtool: "cheap-module-eval-source-map",
   // 4
   module: {
     rules: [
@@ -47,5 +49,12 @@ module.exports = {
   // 3
   devServer: {
     contentBase: "./public"
-  }
+  },
+  plugins: [
+    // generate index.html file
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: "public/index.html"
+    })
+  ]
 };
