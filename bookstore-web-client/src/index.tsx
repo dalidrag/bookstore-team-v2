@@ -9,7 +9,7 @@ class Index extends Component {
     super(props);
   }
 
-  title: string = "Linted TypeScript for React";
+  title: string = "Linted TypeScript for React with HMR";
 
   componentWillMount() {}
 
@@ -29,3 +29,7 @@ class Index extends Component {
 }
 
 ReactDOM.render(<Index />, document.getElementById("app"));
+
+if (module["hot"]) {
+  module["hot"].accept();
+}

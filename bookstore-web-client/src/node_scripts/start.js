@@ -17,6 +17,7 @@ const webpack = require("webpack");
 const express = require("express");
 
 const WebpackDevMiddleware = require("webpack-dev-middleware");
+const WebpackHotMiddleware = require("webpack-hot-middleware");
 const clearConsole = require("@ateam/react-dev-utils/clearConsole");
 const formatWebpackMessages = require("@ateam/react-dev-utils/formatWebpackMessages");
 const { choosePort } = require("@ateam/react-dev-utils/WebpackDevServerUtils");
@@ -109,6 +110,8 @@ choosePort(HOST, DEFAULT_PORT)
         contentBase: "../../public",
         watchContentBase: true,
         publicPath: "/",
+        // enable hot reloading
+        hot: true,
         // display only error messages, formatted warning stats will be shown in terminal
         logLevel: "error",
         quiet: true,
@@ -118,6 +121,9 @@ choosePort(HOST, DEFAULT_PORT)
         }
       })
     );
+
+    // configure WebpackHotMiddleware
+    devServer.use(WebpackHotMiddleware(compiler));
 
     // serve files from the public dir
     const appDirectory = fs.realpathSync(process.cwd());
