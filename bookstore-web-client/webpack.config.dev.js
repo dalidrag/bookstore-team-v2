@@ -4,7 +4,7 @@ const webpack = require("webpack");
 
 module.exports = {
   // 1
-  entry: ["./src/index.tsx", "webpack-hot-middleware/client"],
+  entry: ["./polyfills.js", "./src/index.tsx", "webpack-hot-middleware/client"],
   mode: "development",
   devtool: "cheap-module-eval-source-map",
   // 4

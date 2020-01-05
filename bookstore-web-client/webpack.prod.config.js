@@ -9,7 +9,7 @@ module.exports = env => {
 
   return {
     // 1
-    entry: ["./src/index.tsx"],
+    entry: ["./polyfills.js", "./src/index.tsx"],
     mode: "production",
     devtool: "source-map",
     // 4

@@ -9,7 +9,7 @@ class Index extends Component {
     super(props);
   }
 
-  title: string = "Linted TypeScript for React with HMR";
+  title: string = "Linted TypeScript for React with Hot Module Replacement";
 
   componentWillMount() {}
 
