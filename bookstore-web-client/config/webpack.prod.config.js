@@ -13,6 +13,7 @@ module.exports = env => {
     // 1
     entry: [require.resolve("./polyfills.js"), paths.appIndexJs],
     mode: "production",
+    bail: true,
     devtool: "source-map",
     // 4
     module: {
