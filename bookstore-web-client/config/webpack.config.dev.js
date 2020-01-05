@@ -1,10 +1,17 @@
 const eslintFormatter = require("@ateam/react-dev-utils/eslintFormatter");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const path = require("path");
+
+const paths = require("./paths");
 
 module.exports = {
   // 1
-  entry: ["./polyfills.js", "./src/index.tsx", "webpack-hot-middleware/client"],
+  entry: [
+    require.resolve("./polyfills"),
+    require.resolve("webpack-hot-middleware/client"),
+    paths.appIndexJs
+  ],
   mode: "development",
   devtool: "cheap-module-eval-source-map",
   // 4
@@ -39,24 +46,24 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"]
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"]
   },
   // 2
   output: {
-    path: __dirname + "/public",
-    publicPath: "/",
+    path: path.join(__dirname, paths.appPublic),
+    publicPath: paths.publicUrl,
     filename: "bundle.js"
   },
   // 3
   devServer: {
-    contentBase: "./public",
+    contentBase: paths.appPublic,
     hot: true
   },
   plugins: [
     // generate index.html file
     new HtmlWebpackPlugin({
       inject: true,
-      template: "public/index.html"
+      template: paths.appHtml
     }),
     new webpack.HotModuleReplacementPlugin()
   ]

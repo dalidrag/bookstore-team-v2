@@ -4,12 +4,14 @@ const eslintFormatter = require("@ateam/react-dev-utils/eslintFormatter");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+const paths = require("./paths");
+
 module.exports = env => {
   process.env.NODE_ENV = env.NODE_ENV;
 
   return {
     // 1
-    entry: ["./polyfills.js", "./src/index.tsx"],
+    entry: [require.resolve("./polyfills.js"), paths.appIndexJs],
     mode: "production",
     devtool: "source-map",
     // 4
@@ -48,8 +50,8 @@ module.exports = env => {
     },
     // 2
     output: {
-      path: __dirname + "/build",
-      publicPath: "/",
+      path: paths.appBuild,
+      publicPath: paths.publicUrl,
       filename: "bundle.js"
     },
     plugins: [
@@ -57,7 +59,7 @@ module.exports = env => {
       // generate index.html file
       new HtmlWebpackPlugin({
         inject: true,
-        template: "public/index.html",
+        template: paths.appHtml,
         minify: {
           removeComments: true,
           collapseWhitespace: true,

@@ -22,7 +22,8 @@ const clearConsole = require("@ateam/react-dev-utils/clearConsole");
 const formatWebpackMessages = require("@ateam/react-dev-utils/formatWebpackMessages");
 const { choosePort } = require("@ateam/react-dev-utils/WebpackDevServerUtils");
 
-const config = require("../../webpack.config.dev.js");
+const config = require("../../config/webpack.config.dev.js");
+const paths = require("../../config/paths.js");
 
 const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const HOST = process.env.HOST || "0.0.0.0";
@@ -126,10 +127,8 @@ choosePort(HOST, DEFAULT_PORT)
     devServer.use(WebpackHotMiddleware(compiler));
 
     // serve files from the public dir
-    const appDirectory = fs.realpathSync(process.cwd());
-    const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
     devServer.use(
-      express.static(resolveApp("public"), {
+      express.static(paths.appPublic, {
         index: false
       })
     );
