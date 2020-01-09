@@ -4,3 +4,10 @@ node_js:
 before_install: cd bookstore-web-client
 after_success:
   - npm run build
+before_deploy: cd dist
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  api_key:
+    secure: "d28bcd01-4ae2-4ad0-8e58-d5bf39ab385b"
+  app: bookstore-daco
