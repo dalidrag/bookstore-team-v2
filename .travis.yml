@@ -2,3 +2,5 @@ language: node_js
 node_js:
   - 7
 before_install: cd bookstore-web-client
+after_success:
+  - npm run build
