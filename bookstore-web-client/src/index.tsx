@@ -4,31 +4,30 @@ import "regenerator-runtime/runtime";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-class Index extends Component {
-  constructor(props) {
-    super(props);
+import PropTypes from "prop-types";
+
+type Props = {
+  text: string;
+  times: number;
+};
+
+const Index: React.FunctionComponent<Props> = props => {
+  const paragraphs = [];
+  for (let i = 0; i < props.times; ++i) {
+    paragraphs.push(<p>{props.text}</p>);
   }
+  return <div>{paragraphs}</div>;
+};
 
-  title: string = "Linted TypeScript for React with Hot Module Replacement";
+Index.propTypes = {
+  text: PropTypes.string.isRequired,
+  times: PropTypes.number.isRequired
+};
 
-  componentWillMount() {}
-
-  componentDidMount() {}
-
-  componentWillReceiveProps(nextProps) {}
-
-  componentWillUpdate(nextProps, nextState) {}
-
-  componentDidUpdate(prevProps, prevState) {}
-
-  componentWillUnmount() {}
-
-  render() {
-    return <div>{this.title}</div>;
-  }
-}
-
-ReactDOM.render(<Index />, document.getElementById("app"));
+ReactDOM.render(
+  <Index text="Lorem ipsum." times={40} />,
+  document.getElementById("app")
+);
 
 if (module["hot"]) {
   module["hot"].accept();

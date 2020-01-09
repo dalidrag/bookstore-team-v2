@@ -6,7 +6,7 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 const getPublicUrl = appPackageJson => require(appPackageJson).homepage;
 
 module.exports = {
-  appBuild: resolveApp("build"),
+  appBuild: resolveApp("dist/public"),
   appPublic: resolveApp("public"),
   appHtml: resolveApp("public/index.html"),
   appIndexJs: resolveApp("src/index.tsx"),
