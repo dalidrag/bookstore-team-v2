@@ -1,4 +1,5 @@
 {
+  "extends": "./node_modules/@sentry/typescript/tsconfig.json",
   "compilerOptions": {
     "outDir": "./public/",
     "sourceMap": true,
@@ -9,7 +10,5 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

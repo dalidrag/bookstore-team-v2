@@ -1,10 +1,16 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 import PropTypes from "prop-types";
+
+import * as Sentry from "@sentry/browser";
+
+Sentry.init({
+  dsn: "https://4de21220c62649b39a9f6c13e36335fa@sentry.io/1876490"
+});
 
 type Props = {
   text: string;
@@ -12,7 +18,7 @@ type Props = {
 };
 
 const Index: React.FunctionComponent<Props> = props => {
-  const paragraphs = [];
+  const paragraphs: Array<JSX.Element> = [];
   for (let i = 0; i < props.times; ++i) {
     paragraphs.push(<p>{props.text}</p>);
   }
