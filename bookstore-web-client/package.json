@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/node_scripts/start.js",
     "build": "webpack --env.NODE_ENV=production --config config/webpack.prod.config.js",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "keywords": [],
   "author": "",
