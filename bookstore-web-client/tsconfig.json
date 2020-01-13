@@ -1,7 +1,6 @@
 {
   "extends": "./node_modules/@sentry/typescript/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./public/",
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "es6",
