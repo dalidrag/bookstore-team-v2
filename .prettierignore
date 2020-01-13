@@ -1,4 +1,6 @@
 *.map
+*.jpg
+*.png
 node_modules
 build
 .prettierignore
