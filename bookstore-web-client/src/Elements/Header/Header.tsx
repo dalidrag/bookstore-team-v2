@@ -9,7 +9,7 @@ const HeaderContainer = styled.div`
   height: ${CSSVariables.headerHeight};
   background-color: white;
   top: 0;
-  padding-bottom: 20px;
+  padding-bottom: ${CSSVariables.headerBottomPadding};
 `;
 HeaderContainer.displayName = "HeaderContainer";
 
@@ -38,7 +38,7 @@ const Header: React.FunctionComponent = () => {
   return (
     <HeaderContainer>
       <HeaderImage src="/img/bookstore-logo.jpg" alt="Bookstore Logo" />
-      <MainMenu role="menubar">
+      <MainMenu role="menubar" aria-labelledby="Main menu" tabindex="0">
         <a href="#">Categories</a>
         <a href="#">Wish List</a>
         <a href="#">Profile</a>

@@ -47,10 +47,14 @@ describe("Header", () => {
     );
   });
 
-  it("renders main menu with ARIA role attribute of 'menubar' ", () => {
+  it("renders main menu with appropriate properties", () => {
     const wrapper = shallow(<Header />);
 
     expect(wrapper.find("MainMenu").get(0).props.role).toEqual("menubar");
+    expect(wrapper.find("MainMenu").get(0).props["aria-labelledby"]).toEqual(
+      "Main menu"
+    );
+    expect(wrapper.find("MainMenu").get(0).props.tabindex).toStrictEqual("0");
   });
   //
   // it('renders correct text in item', () => {

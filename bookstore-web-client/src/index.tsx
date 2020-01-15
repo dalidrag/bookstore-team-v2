@@ -16,8 +16,10 @@ Sentry.init({
   dsn: "https://4de21220c62649b39a9f6c13e36335fa@sentry.io/1876490"
 });
 
-const MainContainer = styled.div`
-  margin-top: calc(${CSSVariables.headerHeight} + 20px);
+const MainContainer = styled.main`
+  margin-top: calc(
+    ${CSSVariables.headerHeight} + ${CSSVariables.headerBottomPadding}
+  );
 `;
 
 type Props = {

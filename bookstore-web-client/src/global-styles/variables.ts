@@ -1,5 +1,6 @@
 const CSSVariables = {
-  headerHeight: "100px"
+  headerHeight: "100px",
+  headerBottomPadding: "20px"
 };
 
 export default CSSVariables;
