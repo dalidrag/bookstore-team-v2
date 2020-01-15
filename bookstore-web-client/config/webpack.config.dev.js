@@ -2,6 +2,7 @@ const eslintFormatter = require("@ateam/react-dev-utils/eslintFormatter");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const path = require("path");
+const { DefinePlugin } = require("webpack");
 
 const paths = require("./paths");
 
@@ -65,6 +66,11 @@ module.exports = {
       inject: true,
       template: paths.appHtml
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("development")
+      }
+    })
   ]
 };

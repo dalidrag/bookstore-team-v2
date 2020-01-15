@@ -2,6 +2,7 @@
 
 const eslintFormatter = require("@ateam/react-dev-utils/eslintFormatter");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { DefinePlugin } = require("webpack");
 
 const paths = require("./paths");
 
@@ -67,6 +68,11 @@ module.exports = {
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true
+      }
+    }),
+    new DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
       }
     })
   ]
