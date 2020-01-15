@@ -3,16 +3,22 @@ import "regenerator-runtime/runtime";
 
 import React from "react";
 import ReactDOM from "react-dom";
-
 import PropTypes from "prop-types";
+
+import styled from "styled-components";
 
 import * as Sentry from "@sentry/browser";
 
+import CSSVariables from "./global-styles/variables";
 import Header from "./Elements/Header/Header";
 
 Sentry.init({
   dsn: "https://4de21220c62649b39a9f6c13e36335fa@sentry.io/1876490"
 });
+
+const MainContainer = styled.div`
+  margin-top: calc(${CSSVariables.headerHeight} + 20px);
+`;
 
 type Props = {
   text: string;
@@ -25,10 +31,10 @@ const Index: React.FunctionComponent<Props> = props => {
     paragraphs.push(<p>{props.text}</p>);
   }
   return (
-    <div>
+    <MainContainer>
       <Header />
       <div>{paragraphs}</div>
-    </div>
+    </MainContainer>
   );
 };
 
