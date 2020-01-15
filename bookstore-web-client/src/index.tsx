@@ -3,14 +3,10 @@ import "regenerator-runtime/runtime";
 
 import React from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
-
-import styled from "styled-components";
 
 import * as Sentry from "@sentry/browser";
 
-import CSSVariables from "./global-styles/variables";
-import Header from "./Elements/Header/Header";
+import App from "./app";
 
 if (process.env.NODE_ENV !== "development") {
   Sentry.init({
@@ -18,39 +14,11 @@ if (process.env.NODE_ENV !== "development") {
   });
 }
 
-const MainContainer = styled.main`
-  margin-top: calc(
-    ${CSSVariables.headerHeight} + ${CSSVariables.headerBottomPadding}
-  );
-`;
-
-type Props = {
-  text: string;
-  times: number;
+const Index: React.FunctionComponent = () => {
+  return <App lang="sr" text="Lorem ipsum." times={40} />;
 };
 
-const Index: React.FunctionComponent<Props> = props => {
-  const paragraphs: Array<JSX.Element> = [];
-  for (let i = 0; i < props.times; ++i) {
-    paragraphs.push(<p>{props.text}</p>);
-  }
-  return (
-    <MainContainer>
-      <Header />
-      <div>{paragraphs}</div>
-    </MainContainer>
-  );
-};
-
-Index.propTypes = {
-  text: PropTypes.string.isRequired,
-  times: PropTypes.number.isRequired
-};
-
-ReactDOM.render(
-  <Index text="Lorem ipsum." times={40} />,
-  document.getElementById("app")
-);
+ReactDOM.render(<Index />, document.getElementById("app"));
 
 if (module["hot"]) {
   module["hot"].accept();

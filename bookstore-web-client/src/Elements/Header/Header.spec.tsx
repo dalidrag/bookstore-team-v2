@@ -1,7 +1,10 @@
+import "jsdom-global/register";
+
 import React from "react";
-import { shallow } from "../../enzyme";
+import { shallow, mount } from "../../enzyme";
 
 import Header from "./Header";
+import App from "../../app";
 
 describe("Header", () => {
   it("displays", () => {
@@ -56,12 +59,11 @@ describe("Header", () => {
     );
     expect(wrapper.find("MainMenu").get(0).props.tabindex).toStrictEqual("0");
   });
-  //
-  // it('renders correct text in item', () => {
-  //   const items = ['John', 'James', 'Luke'];
-  //   const wrapper = shallow(<List items={items} />);
-  //
-  //   //Expect the child of the first item to be an array
-  //   expect(wrapper.find('.item').get(0).props.children).toEqual('John');
-  // });
+
+  it("displays menu text in specified language", () => {
+    const wrapper = mount(<App text="Lorem ipsum." times={40} lang="sr" />);
+    const messageWrapper = wrapper.find("FormattedMessage").at(1);
+
+    expect(messageWrapper.text()).toEqual("Lista želja");
+  });
 });

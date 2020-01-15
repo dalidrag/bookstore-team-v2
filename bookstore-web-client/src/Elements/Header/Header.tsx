@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { FormattedMessage } from "react-intl";
 import CSSVariables from "../../global-styles/variables";
 
 const HeaderContainer = styled.div`
@@ -34,17 +34,31 @@ const MainMenu = styled.nav`
 `;
 MainMenu.displayName = "MainMenu";
 
-const Header: React.FunctionComponent = () => {
+type Props = {
+  lang?: string;
+};
+
+const Header: React.FunctionComponent<Props> = () => {
   return (
     <HeaderContainer>
       <HeaderImage src="/img/bookstore-logo.jpg" alt="Bookstore Logo" />
       <MainMenu role="menubar" aria-labelledby="Main menu" tabindex="0">
-        <a href="#">Categories</a>
-        <a href="#">Wish List</a>
-        <a href="#">Profile</a>
+        <a href="#">
+          <FormattedMessage id="header.categories" />
+        </a>
+        <a href="#">
+          <FormattedMessage id="header.wishList" />
+        </a>
+        <a href="#">
+          <FormattedMessage id="header.profile" />
+        </a>
       </MainMenu>
     </HeaderContainer>
   );
+};
+
+Header.defaultProps = {
+  lang: "en"
 };
 
 export default Header;
