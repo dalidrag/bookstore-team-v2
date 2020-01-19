@@ -12,6 +12,10 @@ const MainContainer = styled.main`
   margin-top: calc(
     ${CSSVariables.headerHeight} + ${CSSVariables.headerBottomPadding}
   );
+  max-width: 1200px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
 `;
 
 type Props = {

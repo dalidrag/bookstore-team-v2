@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 import CSSVariables from "../../global-styles/variables";
 
 const HeaderContainer = styled.div`
@@ -38,9 +39,9 @@ type Props = {
   lang?: string;
 };
 
-const Header: React.FunctionComponent<Props> = () => {
+const Header: React.FunctionComponent<Props> = props => {
   return (
-    <HeaderContainer>
+    <HeaderContainer lang={props.lang}>
       <HeaderImage src="/img/bookstore-logo.jpg" alt="Bookstore Logo" />
       <MainMenu role="menubar" aria-labelledby="Main menu" tabindex="0">
         <a href="#">
@@ -56,7 +57,9 @@ const Header: React.FunctionComponent<Props> = () => {
     </HeaderContainer>
   );
 };
-
+Header.propTypes = {
+  lang: PropTypes.string
+};
 Header.defaultProps = {
   lang: "en"
 };

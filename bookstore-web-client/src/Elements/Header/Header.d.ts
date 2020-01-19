@@ -1,4 +1,7 @@
 import React from "react";
-declare const Header: React.FunctionComponent;
+declare type Props = {
+    lang?: string;
+};
+declare const Header: React.FunctionComponent<Props>;
 export default Header;
 //# sourceMappingURL=Header.d.ts.map
