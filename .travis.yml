@@ -11,3 +11,5 @@ deploy:
   api_key:
     secure: "d28bcd01-4ae2-4ad0-8e58-d5bf39ab385b"
   app: bookstore-daco
+env:
+  - CI=true
