@@ -8,14 +8,15 @@ import Header from "./Elements/Header/Header";
 import CSSVariables from "./global-styles/variables";
 import messages from "./messages";
 
+const ViewContainer = styled.div`
+  max-width: 1200px;
+  margin: auto;
+`;
+
 const MainContainer = styled.main`
   margin-top: calc(
     ${CSSVariables.headerHeight} + ${CSSVariables.headerBottomPadding}
   );
-  max-width: 1200px;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%);
 `;
 
 type Props = {
@@ -32,10 +33,12 @@ const App: React.FunctionComponent<Props> = props => {
 
   return (
     <IntlProvider locale={props.lang} messages={messages[props.lang]}>
-      <MainContainer>
+      <ViewContainer>
         <Header lang={props.lang} />
-        <div>{paragraphs}</div>
-      </MainContainer>
+        <MainContainer>
+          <div>{paragraphs}</div>
+        </MainContainer>
+      </ViewContainer>
     </IntlProvider>
   );
 };
