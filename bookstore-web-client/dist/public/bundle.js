@@ -29130,7 +29130,14 @@ and limitations under the License.
     }
     (On.displayName = "FormattedMessage"), (On.defaultProps = { values: {} });
     var jn = On,
-      Cn = { headerHeight: "100px", headerBottomPadding: "20px" },
+      Cn = {
+        headerHeight: "100px",
+        headerBottomPadding: "20px",
+        mobileLandscape: "@media screen and (min-width: 480px)",
+        tabletPortrait: "@media screen and (min-width: 768px)",
+        tabletLandscape: "@media screen and (min-width: 992px)",
+        laptops: "@media screen and (min-width: 1200px)"
+      },
       An = Ue.a.div.withConfig({
         displayName: "Header__HeaderContainer",
         componentId: "sc-1qf8kih-0"
@@ -29203,7 +29210,11 @@ and limitations under the License.
         displayName: "app__MainContainer",
         componentId: "kzwtgq-0"
       })(
-        ["margin-top:calc( ", " + ", " );"],
+        [
+          "margin-top:calc( ",
+          " + ",
+          " );max-width:1200px;position:relative;left:50%;transform:translate(-50%);"
+        ],
         Cn.headerHeight,
         Cn.headerBottomPadding
       ),

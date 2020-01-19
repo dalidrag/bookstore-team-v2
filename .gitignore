@@ -2,4 +2,4 @@ workspace.xml
 node_modules
 dist/public
 .d.ts
-.d.ts.map
+.map
