@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/node_scripts/start.js",
     "build": "node --max-old-space-size=4096 src/node_scripts/build.js",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests --showConfig"
   },
   "keywords": [],
   "author": "",
