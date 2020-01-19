@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 7
+  - "lts/*"
 before_install: cd bookstore-web-client
 after_success:
   - npm run build
