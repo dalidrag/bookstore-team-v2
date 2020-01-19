@@ -1,7 +1,7 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  transformIgnorePatterns: ["/node_modules/(?!App)"],
+  transformIgnorePatterns: ["/node_modules/(?!(jsdom-global/register)/)"],
   globals: {
     "ts-jest": {
       diagnostics: {
