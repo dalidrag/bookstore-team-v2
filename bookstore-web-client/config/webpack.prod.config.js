@@ -24,8 +24,7 @@ module.exports = {
             loader: require.resolve("eslint-loader"),
             options: {
               formatter: eslintFormatter,
-              eslintPath: require.resolve("eslint"),
-              fix: true
+              eslintPath: require.resolve("eslint")
             }
           }
         ],
