@@ -21,9 +21,9 @@ type Props = {
 };
 
 const Option: React.FunctionComponent<Props> = props => {
-  const handleClick = e => {
+  const handleClick = () => {
     if (typeof props.onChange === "function") {
-      e.stopPropagation();
+      // e.stopPropagation();
       props.onChange(props.value);
     }
   };

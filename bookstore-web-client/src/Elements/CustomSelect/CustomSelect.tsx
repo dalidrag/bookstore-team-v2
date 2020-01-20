@@ -24,6 +24,10 @@ const StyledSelectList = styled.div`
 type Props = {
   /** Writeup above the whole select widget */
   label?: string | null | undefined;
+  /** Content of the select field */
+  value: string;
+  /** Function which handles the select event */
+  onChange: Object;
   /** Needed to style the out-most element of the component */
   className: string | undefined;
 };
@@ -31,37 +35,34 @@ type Props = {
 type State = {
   /** Whether to render the drop-down */
   isActive: boolean;
-  value: string;
 };
 
 class CustomSelect extends React.Component<Props, State> {
   static propTypes = {
     label: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired
   };
 
   static defaultProps = {
     label: null,
-    className: undefined
+    className: undefined,
+    value: null
   };
 
   state = {
-    isActive: false,
-    value: "Select field"
+    isActive: false
   };
 
   toggleDropDown = () => {
     this.setState(state => ({ isActive: !state.isActive }));
   };
 
-  onChange = value => {
-    this.setState(state => ({ value: value, isActive: !state.isActive }));
-  };
-
   render() {
     const updatedChildren = React.Children.map(this.props.children, child =>
       React.cloneElement(child as ReactElement, {
-        onChange: this.onChange
+        onChange: this.props.onChange
       })
     );
 
@@ -71,7 +72,7 @@ class CustomSelect extends React.Component<Props, State> {
         onClick={this.toggleDropDown}
       >
         {this.props.label && <label>{this.props.label}</label>}
-        <SelectField>{this.state.value}</SelectField>
+        <SelectField>{this.props.value}</SelectField>
         {this.state.isActive && <DropDown>{updatedChildren}</DropDown>}
       </StyledSelectList>
     );

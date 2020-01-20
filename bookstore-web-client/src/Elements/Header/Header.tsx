@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
@@ -51,6 +51,8 @@ type Props = {
 };
 
 const Header: React.FunctionComponent<Props> = props => {
+  const [selectedLanguage, selectLanguage] = useState("Select language");
+
   return (
     <HeaderContainer lang={props.lang}>
       <HeaderImage src="/img/bookstore-logo.jpg" alt="Bookstore Logo" />
@@ -65,7 +67,11 @@ const Header: React.FunctionComponent<Props> = props => {
           <FormattedMessage id="header.profile" />
         </a>
       </MainMenu>
-      <PositionedSelect label="Custom Select">
+      <PositionedSelect
+        label="Custom Select"
+        onChange={value => selectLanguage(value)}
+        value={selectedLanguage}
+      >
         <Option value="Apple">Option 1</Option>
         <Option value="Orange">Option 2</Option>
         <Option value="Apple & Orange">Option 3</Option>
