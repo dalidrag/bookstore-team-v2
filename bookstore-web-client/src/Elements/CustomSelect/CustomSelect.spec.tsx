@@ -24,12 +24,12 @@ describe("Custom Select", () => {
   });
 
   it("should display list of options when select field is clicked on", () => {
-    wrapper.find("div > div").simulate("click");
+    wrapper.find("SelectField").simulate("click");
     expect(wrapper.find(Option)).toHaveLength(3);
   });
 
   it("should insert option value in select field when option is clicked on", () => {
-    const SelectField = wrapper.find("div > div");
+    const SelectField = wrapper.find("SelectField");
     SelectField.simulate("click");
     const Options = wrapper.find(Option);
 

@@ -1,5 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const StyledOption = styled.li`
+  background-color: white;
+  border-bottom: 1px solid lightblue;
+  padding: 3px;
+  user-select: none;
+`;
 
 type Props = {
   /** Text that will be shown in this list item */
@@ -21,9 +29,9 @@ const Option: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <li className={props.className} onClick={handleClick}>
+    <StyledOption className={props.className} onClick={handleClick}>
       {props.children || props.label}
-    </li>
+    </StyledOption>
   );
 };
 

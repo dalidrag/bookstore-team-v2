@@ -1,5 +1,25 @@
 import React, { ReactElement } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const SelectField = styled.div`
+  background-image: linear-gradient(white 65%, lightblue 100%);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 5px;
+  user-select: none;
+`;
+SelectField.displayName = "SelectField";
+
+const DropDown = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const StyledSelectList = styled.div`
+  pointer: cursor;
+`;
 
 type Props = {
   /** Writeup above the whole select widget */
@@ -46,11 +66,14 @@ class CustomSelect extends React.Component<Props, State> {
     );
 
     return (
-      <div className={this.props.className} onClick={this.toggleDropDown}>
+      <StyledSelectList
+        className={this.props.className}
+        onClick={this.toggleDropDown}
+      >
         {this.props.label && <label>{this.props.label}</label>}
-        <div>{this.state.value}</div>
-        {this.state.isActive && <ul>{updatedChildren}</ul>}
-      </div>
+        <SelectField>{this.state.value}</SelectField>
+        {this.state.isActive && <DropDown>{updatedChildren}</DropDown>}
+      </StyledSelectList>
     );
   }
 }
