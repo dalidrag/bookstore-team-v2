@@ -2,11 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
+
 import CSSVariables from "../../global-styles/variables";
+
+import CustomSelect from "../CustomSelect/CustomSelect";
+import Option from "../CustomSelect/Option";
 
 const HeaderContainer = styled.div`
   position: fixed;
   width: 100%;
+  max-width: 1200px;
   height: ${CSSVariables.headerHeight};
   background-color: white;
   top: 0;
@@ -35,6 +40,12 @@ const MainMenu = styled.nav`
 `;
 MainMenu.displayName = "MainMenu";
 
+const PositionedSelect = styled(CustomSelect)`
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
+
 type Props = {
   lang?: string;
 };
@@ -54,6 +65,11 @@ const Header: React.FunctionComponent<Props> = props => {
           <FormattedMessage id="header.profile" />
         </a>
       </MainMenu>
+      <PositionedSelect label="Custom Select">
+        <Option value="Apple">Option 1</Option>
+        <Option value="Orange">Option 2</Option>
+        <Option value="Apple & Orange">Option 3</Option>
+      </PositionedSelect>
     </HeaderContainer>
   );
 };
