@@ -31,6 +31,7 @@ module.exports = function(api) {
         ]
       ],
       plugins: [
+        require("react-hot-loader/babel"),
         [
           require("@babel/plugin-transform-runtime").default,
           {
