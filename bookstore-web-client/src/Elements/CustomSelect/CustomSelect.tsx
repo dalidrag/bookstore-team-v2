@@ -55,14 +55,45 @@ class CustomSelect extends React.Component<Props, State> {
     isActive: false
   };
 
+  getSelectedOption = (value, options: ReactElement[] = []) => {
+    if (options.length > 0) {
+      // selected option
+      const selectedOption = options.find(
+        option => option.props && option.props.value === value
+      );
+      if (selectedOption) {
+        return selectedOption;
+      }
+      // default option
+      const defaultOption = options.find(
+        option => option.props && option.props.isDefault
+      );
+      if (defaultOption) {
+        return defaultOption;
+      }
+      // first option
+      return options[0];
+    }
+    return null;
+  };
+
   toggleDropDown = () => {
     this.setState(state => ({ isActive: !state.isActive }));
   };
 
   render() {
+    const options = React.Children.toArray(this.props.children);
+    const selectedOption = this.getSelectedOption(
+      this.props.value,
+      options as ReactElement[]
+    );
+    const selectedValue =
+      selectedOption && selectedOption.props && selectedOption.props.value;
+
     const updatedChildren = React.Children.map(this.props.children, child =>
       React.cloneElement(child as ReactElement, {
-        onChange: this.props.onChange
+        onChange: this.props.onChange,
+        selectedValue
       })
     );
 
