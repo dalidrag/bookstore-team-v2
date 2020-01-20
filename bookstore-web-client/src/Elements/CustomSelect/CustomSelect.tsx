@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import PropTypes from "prop-types";
 
 type Props = {
@@ -11,6 +11,7 @@ type Props = {
 type State = {
   /** Whether to render the drop-down */
   isActive: boolean;
+  value: string;
 };
 
 class CustomSelect extends React.Component<Props, State> {
@@ -25,19 +26,30 @@ class CustomSelect extends React.Component<Props, State> {
   };
 
   state = {
-    isActive: false
+    isActive: false,
+    value: "Select field"
   };
 
   toggleDropDown = () => {
     this.setState(state => ({ isActive: !state.isActive }));
   };
 
+  onChange = value => {
+    this.setState(state => ({ value: value, isActive: !state.isActive }));
+  };
+
   render() {
+    const updatedChildren = React.Children.map(this.props.children, child =>
+      React.cloneElement(child as ReactElement, {
+        onChange: this.onChange
+      })
+    );
+
     return (
       <div className={this.props.className} onClick={this.toggleDropDown}>
         {this.props.label && <label>{this.props.label}</label>}
-        <div>Select field</div>
-        {this.state.isActive && <ul>{this.props.children}</ul>}
+        <div>{this.state.value}</div>
+        {this.state.isActive && <ul>{updatedChildren}</ul>}
       </div>
     );
   }
