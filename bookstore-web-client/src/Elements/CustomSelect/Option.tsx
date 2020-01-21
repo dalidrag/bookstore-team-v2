@@ -13,6 +13,12 @@ type Props = {
   className?: string | undefined;
   /** Callback prop to react on option selection */
   onChange?: Object;
+  /** Callback prop to focus option element on mouse over */
+  handleOptionsOnMouseOver?: Object;
+  /** Index of this option element in select list */
+  index?: number;
+  /** Callback prop to send option ref to select list component */
+  setOptionRef?: Object;
 };
 
 const Option: React.FunctionComponent<Props> = props => {
@@ -32,8 +38,20 @@ const Option: React.FunctionComponent<Props> = props => {
     }
   };
 
+  const handleMouseOver = e => {
+    if (typeof props.handleOptionsOnMouseOver === "function") {
+      props.handleOptionsOnMouseOver(e, props.index);
+    }
+  };
+
   return (
-    <StyledOption className={props.className} onClick={handleClick}>
+    <StyledOption
+      tabIndex="0"
+      className={props.className}
+      onClick={handleClick}
+      onMouseOver={handleMouseOver}
+      ref={props.setOptionRef}
+    >
       {props.children || props.label}
     </StyledOption>
   );
@@ -44,13 +62,19 @@ Option.propTypes = {
   value: PropTypes.string.isRequired,
   selectedValue: PropTypes.string,
   className: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  handleOptionsOnMouseOver: PropTypes.func,
+  setOptionRef: PropTypes.func,
+  index: PropTypes.number
 };
 Option.defaultProps = {
   label: null,
   className: undefined,
   onChange: undefined,
-  selectedValue: undefined
+  selectedValue: undefined,
+  handleOptionsOnMouseOver: undefined,
+  setOptionRef: undefined,
+  index: -1
 };
 
 export default Option;

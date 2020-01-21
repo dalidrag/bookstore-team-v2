@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, ReactNodeArray } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -78,7 +78,42 @@ class CustomSelect extends React.Component<Props, State> {
   };
 
   toggleDropDown = () => {
-    this.setState(state => ({ isActive: !state.isActive }));
+    this.setState(
+      state => ({ isActive: !state.isActive }),
+      () => {
+        if (this.state.isActive) {
+          // @ts-ignore: possibly null or undefined
+          this.arrayOfOptionsRefs[this.currentOptionIndex].focus();
+          return;
+        }
+        this.clearOptionsRefs();
+      }
+    );
+  };
+
+  arrayOfOptionsRefs: ReactNodeArray = [];
+
+  setOptionRef = element => {
+    if (element !== null) {
+      this.arrayOfOptionsRefs.push(element);
+    }
+  };
+
+  clearOptionsRefs = () => {
+    this.arrayOfOptionsRefs = [];
+  };
+
+  currentOptionIndex = 0;
+
+  // @ts-ignore: Value of declared variable not read (e)
+  handleOptionsOnMouseOver = (e, index) => {
+    // @ts-ignore: possibly null or undefined
+    this.arrayOfOptionsRefs[index].focus();
+    if (index !== this.currentOptionIndex) {
+      // @ts-ignore: possibly null or undefined
+      this.arrayOfOptionsRefs[this.currentOptionIndex].blur();
+      this.currentOptionIndex = index;
+    }
   };
 
   render() {
@@ -90,11 +125,16 @@ class CustomSelect extends React.Component<Props, State> {
     const selectedValue =
       selectedOption && selectedOption.props && selectedOption.props.value;
 
-    const updatedChildren = React.Children.map(this.props.children, child =>
-      React.cloneElement(child as ReactElement, {
-        onChange: this.props.onChange,
-        selectedValue
-      })
+    const updatedChildren = React.Children.map(
+      this.props.children,
+      (child, index) =>
+        React.cloneElement(child as ReactElement, {
+          onChange: this.props.onChange,
+          selectedValue,
+          handleOptionsOnMouseOver: this.handleOptionsOnMouseOver,
+          index,
+          setOptionRef: this.setOptionRef
+        })
     );
 
     return (
