@@ -19,6 +19,8 @@ type Props = {
   index?: number;
   /** Callback prop to send option ref to select list component */
   setOptionRef?: Object;
+  /** Callback prop to send data about pressed key to select list component */
+  handleOptionsOnKeyDown?: Object;
 };
 
 const Option: React.FunctionComponent<Props> = props => {
@@ -30,6 +32,7 @@ const Option: React.FunctionComponent<Props> = props => {
     padding: 3px;
     user-select: none;
   `;
+  StyledOption.displayName = "StyledOption";
 
   const handleClick = () => {
     if (typeof props.onChange === "function") {
@@ -44,13 +47,21 @@ const Option: React.FunctionComponent<Props> = props => {
     }
   };
 
+  const handleKeyDown = e => {
+    if (typeof props.handleOptionsOnKeyDown === "function") {
+      props.handleOptionsOnKeyDown(e, props.index, props.value);
+    }
+  };
+
   return (
     <StyledOption
-      tabIndex="0"
+      tabIndex="-1"
+      role="option"
       className={props.className}
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       ref={props.setOptionRef}
+      onKeyDown={handleKeyDown}
     >
       {props.children || props.label}
     </StyledOption>
@@ -65,7 +76,8 @@ Option.propTypes = {
   onChange: PropTypes.func,
   handleOptionsOnMouseOver: PropTypes.func,
   setOptionRef: PropTypes.func,
-  index: PropTypes.number
+  index: PropTypes.number,
+  handleOptionsOnKeyDown: PropTypes.func
 };
 Option.defaultProps = {
   label: null,
@@ -74,7 +86,8 @@ Option.defaultProps = {
   selectedValue: undefined,
   handleOptionsOnMouseOver: undefined,
   setOptionRef: undefined,
-  index: -1
+  index: -1,
+  handleOptionsOnKeyDown: undefined
 };
 
 export default Option;

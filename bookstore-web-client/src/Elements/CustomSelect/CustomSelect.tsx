@@ -20,6 +20,7 @@ const DropDown = styled.ul`
 const StyledSelectList = styled.div`
   pointer: cursor;
 `;
+StyledSelectList.displayName = "SelectList";
 
 type Props = {
   /** Writeup above the whole select widget */
@@ -103,6 +104,8 @@ class CustomSelect extends React.Component<Props, State> {
     this.arrayOfOptionsRefs = [];
   };
 
+  selectFieldRef = React.createRef<"div">();
+
   currentOptionIndex = 0;
 
   // @ts-ignore: Value of declared variable not read (e)
@@ -113,6 +116,66 @@ class CustomSelect extends React.Component<Props, State> {
       // @ts-ignore: possibly null or undefined
       this.arrayOfOptionsRefs[this.currentOptionIndex].blur();
       this.currentOptionIndex = index;
+    }
+  };
+
+  handleOptionsOnKeyDown = (e, index: number = 0, value: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const len = this.arrayOfOptionsRefs.length - 1;
+    switch (e.key) {
+      case "Enter":
+      case " ":
+        if (typeof this.props.onChange === "function") {
+          this.props.onChange(value);
+        }
+        this.toggleDropDown();
+        // @ts-ignore
+        this.selectFieldRef.current.focus();
+        break;
+      case "Escape":
+        this.toggleDropDown();
+        this.currentOptionIndex = 0;
+        // @ts-ignore
+        this.selectFieldRef.current.focus();
+        break;
+      case "ArrowUp":
+        if (index > 0) {
+          const nextIndex = index - 1;
+          // @ts-ignore
+          this.arrayOfOptionsRefs[nextIndex].focus();
+          this.currentOptionIndex = nextIndex;
+          // @ts-ignore
+          this.arrayOfOptionsRefs[index].blur();
+        }
+        break;
+      case "ArrowDown":
+        if (len > index) {
+          const previousIndex = index + 1;
+          // @ts-ignore
+          this.arrayOfOptionsRefs[previousIndex].focus();
+          // @ts-ignore
+          this.arrayOfOptionsRefs[this.currentOptionIndex].blur();
+          this.currentOptionIndex = previousIndex;
+        }
+        break;
+      default:
+        return;
+    }
+  };
+
+  handleKeyDown = e => {
+    e.preventDefault();
+    switch (e.key) {
+      case "Enter":
+      case " ":
+      case "ArrowDown":
+        this.toggleDropDown();
+        break;
+      default:
+        // @ts-ignore
+        this.selectFieldRef.current.blur();
+        return;
     }
   };
 
@@ -133,7 +196,8 @@ class CustomSelect extends React.Component<Props, State> {
           selectedValue,
           handleOptionsOnMouseOver: this.handleOptionsOnMouseOver,
           index,
-          setOptionRef: this.setOptionRef
+          setOptionRef: this.setOptionRef,
+          handleOptionsOnKeyDown: this.handleOptionsOnKeyDown
         })
     );
 
@@ -141,9 +205,13 @@ class CustomSelect extends React.Component<Props, State> {
       <StyledSelectList
         className={this.props.className}
         onClick={this.toggleDropDown}
+        onKeyDown={this.handleKeyDown}
+        role="listbox"
       >
         {this.props.label && <label>{this.props.label}</label>}
-        <SelectField>{this.props.value}</SelectField>
+        <SelectField tabIndex="0" ref={this.selectFieldRef}>
+          {this.props.value}
+        </SelectField>
         {this.state.isActive && <DropDown>{updatedChildren}</DropDown>}
       </StyledSelectList>
     );
