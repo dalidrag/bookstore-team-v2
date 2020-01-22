@@ -12,10 +12,10 @@ process.on("unhandledRejection", err => {
 const fs = require("fs-extra");
 const chalk = require("chalk");
 const webpack = require("webpack");
-const checkRequiredFiles = require("@ateam/react-dev-utils/checkRequiredFiles");
-const formatWebpackMessages = require("@ateam/react-dev-utils/formatWebpackMessages");
-const FileSizeReporter = require("@ateam/react-dev-utils/FileSizeReporter");
-const printBuildError = require("@ateam/react-dev-utils/printBuildError");
+const checkRequiredFiles = require("../react-dev-utils/checkRequiredFiles");
+const formatWebpackMessages = require("../react-dev-utils/formatWebpackMessages");
+const FileSizeReporter = require("../react-dev-utils/FileSizeReporter");
+const printBuildError = require("../react-dev-utils/printBuildError");
 const paths = require("../../config/paths");
 const config = require("../../config/webpack.prod.config");
 
