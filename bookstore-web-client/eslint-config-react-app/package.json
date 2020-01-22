@@ -22,9 +22,6 @@
   "_spec": "eslint-config-react-app.tar",
   "_where": "C:\\Users\\Dalibor Dragojevic\\SourceExperimental\\bookstore-team-v2",
   "bundleDependencies": false,
-  "dependencies": {
-    "@ateam/eslint-config-base": "^1.0.0"
-  },
   "deprecated": false,
   "description": "ESLint configuration used for React projects",
   "devDependencies": {
