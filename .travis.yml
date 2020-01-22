@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "lts/*"
-before_install: npm install && cd bookstore-web-client
+before_install: cd bookstore-web-client
 after_success:
   - npm run build
 before_deploy: cd dist
