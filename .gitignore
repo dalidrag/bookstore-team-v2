@@ -1,5 +1,5 @@
 workspace.xml
 node_modules
-dist/public
-.d.ts
-.map
+**/dist/public/
+*.d.ts
+*.map
