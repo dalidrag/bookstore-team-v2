@@ -165,7 +165,6 @@ class CustomSelect extends React.Component<Props, State> {
   };
 
   handleKeyDown = e => {
-    e.preventDefault();
     switch (e.key) {
       case "Enter":
       case " ":
@@ -173,8 +172,6 @@ class CustomSelect extends React.Component<Props, State> {
         this.toggleDropDown();
         break;
       default:
-        // @ts-ignore
-        this.selectFieldRef.current.blur();
         return;
     }
   };
