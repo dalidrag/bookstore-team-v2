@@ -3,7 +3,6 @@ node_js:
   - "lts/*"
 before_install: cd bookstore-web-client
 after_success:
-  - eslint ./src
   - npm run build
 before_deploy: cd dist
 deploy:
