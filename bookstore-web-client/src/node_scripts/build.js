@@ -12,10 +12,10 @@ process.on("unhandledRejection", err => {
 const fs = require("fs-extra");
 const chalk = require("chalk");
 const webpack = require("webpack");
-const checkRequiredFiles = require("../../react-dev-utils/checkRequiredFiles.js");
-const formatWebpackMessages = require("../../react-dev-utils/formatWebpackMessages.js");
-const FileSizeReporter = require("../../react-dev-utils/FileSizeReporter.js");
-const printBuildError = require("../../react-dev-utils/printBuildError.js");
+const checkRequiredFiles = require("@ateam/react-dev-utils/checkRequiredFiles.js");
+const formatWebpackMessages = require("@ateam/react-dev-utils/formatWebpackMessages.js");
+const FileSizeReporter = require("@ateam/react-dev-utils/FileSizeReporter.js");
+const printBuildError = require("@ateam/react-dev-utils/printBuildError.js");
 const paths = require("../../config/paths");
 const config = require("../../config/webpack.prod.config");
 
@@ -82,9 +82,9 @@ function build(previousFileSizes) {
         return reject(new Error(messages.errors.join("\n\n")));
       }
       if (
-        // process.env.CI &&
-        // (typeof process.env.CI !== "string" ||
-        //   process.env.CI.toLowerCase() !== "false") &&
+        process.env.CI &&
+        (typeof process.env.CI !== "string" ||
+          process.env.CI.toLowerCase() !== "false") &&
         messages.warnings.length
       ) {
         console.log(
